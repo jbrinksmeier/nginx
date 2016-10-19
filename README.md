@@ -1,6 +1,6 @@
 # Ansible Role: Nginx
 
-[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-nginx.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-nginx)
+[![Build Status](https://travis-ci.org/jellevandehaterd/nginx.svg?branch=master)](https://travis-ci.org/jellevandehaterd/nginx)
 
 Installs Nginx on RedHat/CentOS or Debian/Ubuntu Linux, or FreeBSD servers.
 
