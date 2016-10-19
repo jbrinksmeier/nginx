@@ -1,0 +1,16 @@
+---
+__nginx_user: "nginx"
+root_group: root
+nginx_pidfile:            /run/nginx/nginx.pid
+nginx_conf_path:          /etc/nginx/conf.d
+nginx_conf_file_path:     /etc/nginx/nginx.conf
+nginx_mime_file_path:     /etc/nginx/mime.types
+nginx_vhost_path:         /etc/nginx/sites-enabled
+nginx_default_vhost_path: /etc/nginx/sites-enabled/default
+
+nginx_spool_dir:             "/var/spool/nginx"
+nginx_client_body_temp_path: "{{nginx_spool_dir}}/client_temp 1 2"
+nginx_fastcgi_temp_path:     "{{nginx_spool_dir}}/fastcgi_temp 1 2"
+nginx_proxy_temp_path:       "{{nginx_spool_dir}}/proxy_temp 1 2"
+nginx_scgi_temp_path:        "{{nginx_spool_dir}}/scgi_temp 1 2"
+nginx_uwsgi_temp_path:       "{{nginx_spool_dir}}/uwsgi_temp 1 2"

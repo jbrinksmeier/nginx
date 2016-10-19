@@ -1,0 +1,9 @@
+nginx:
+  image: alpine:3.4
+  user: "nginx"
+  ports:
+    - "80"
+  command: ['/usr/local/bin/dumb-init', 'nginx', '-c', '/etc/nginx/nginx.conf', "-g", "daemon off;"]
+  dev_overrides:
+    ports: []
+    command: 'bin/false'
