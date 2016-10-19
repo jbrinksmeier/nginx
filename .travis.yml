@@ -3,7 +3,7 @@ services: docker
 
 env:
   - distro: alpine:3.4
-    init: /usr/bin/dumb-init
+    init: /bin/sh
     run_opts: ""
 
 before_install:
