@@ -1,3 +1,5 @@
 ---
 - name: Ensure nginx is installed.
   command: apk --no-cache add {{ nginx_package_name }}
+  args:
+    creates: /etc/nginx/*.conf
