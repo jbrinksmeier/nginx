@@ -1,5 +1,30 @@
 ---
+# For preventing pid 1 issues it is advisble to use dumb-init in docker
+- name: Install dumb init
+  get_url:
+    dest: /usr/local/bin/dumb-init
+    url: "https://github.com/Yelp/dumb-init/releases/download/v{{ nginx_dumb_init.version }}/dumb-init_{{ nginx_dumb_init.version }}_amd64"
+    mode: 775
+    validate_certs: no
+    checksum: "{{ nginx_dumb_init.checksum }}"
+  when: ansible_connection != 'docker'
+
 - name: Ensure nginx is installed.
   command: apk --no-cache add {{ nginx_package_name }}
   args:
     creates: /etc/nginx/*.conf
+
+- name: Create nginx spool dir
+  file:
+    path: "{{item}}"
+    state: directory
+    owner: "{{nginx_user}}"
+    group: "{{root_group}}"
+  with_items:
+    - "{{nginx_spool_dir}}"
+    - "{{nginx_pidfile|dirname}}"
+    - "{{nginx_error_log|dirname}}"
+    - "{{nginx_access_log|dirname}}"
+
+
+

@@ -22,6 +22,13 @@ nginx_client_max_body_size: "64m"
 
 nginx_server_names_hash_bucket_size: "64"
 
+nginx_spool_dir:             "/var/spool/nginx"
+nginx_client_body_temp_path: "{{nginx_spool_dir}}/client_temp 1 2"
+nginx_fastcgi_temp_path:     "{{nginx_spool_dir}}/fastcgi_temp 1 2"
+nginx_proxy_temp_path:       "{{nginx_spool_dir}}/proxy_temp 1 2"
+nginx_scgi_temp_path:        "{{nginx_spool_dir}}/scgi_temp 1 2"
+nginx_uwsgi_temp_path:       "{{nginx_spool_dir}}/uwsgi_temp 1 2"
+
 nginx_proxy_cache_path: ""
 
 nginx_extra_conf_options: ""

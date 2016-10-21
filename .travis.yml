@@ -13,7 +13,7 @@ before_install:
 script:
   - container_id=$(mktemp)
   # Run container in detached state.
-  - 'docker run -it -d --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} haterd/nginx:latest "${init}" > "${container_id}"'
+  - 'docker run -it -d -p 80:8080 --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} haterd/nginx:latest "${init}" > "${container_id}"'
 
   # Ansible syntax check.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
@@ -32,6 +32,7 @@ script:
 
   # Check if nginx is running.
   # TODO
+
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

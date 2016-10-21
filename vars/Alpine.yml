@@ -8,9 +8,6 @@ nginx_mime_file_path:     /etc/nginx/mime.types
 nginx_vhost_path:         /etc/nginx/sites-enabled
 nginx_default_vhost_path: /etc/nginx/sites-enabled/default
 
-nginx_spool_dir:             "/var/spool/nginx"
-nginx_client_body_temp_path: "{{nginx_spool_dir}}/client_temp 1 2"
-nginx_fastcgi_temp_path:     "{{nginx_spool_dir}}/fastcgi_temp 1 2"
-nginx_proxy_temp_path:       "{{nginx_spool_dir}}/proxy_temp 1 2"
-nginx_scgi_temp_path:        "{{nginx_spool_dir}}/scgi_temp 1 2"
-nginx_uwsgi_temp_path:       "{{nginx_spool_dir}}/uwsgi_temp 1 2"
+nginx_dumb_init:
+  version: 1.2.0
+  checksum: sha256:81231da1cd074fdc81af62789fead8641ef3f24b6b07366a1c34e5b059faf363
