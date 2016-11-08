@@ -1,7 +1,5 @@
 ---
 
-- debug: var=ansible_env
-
 # For preventing pid 1 issues it is advisble to use dumb-init in docker
 - name: Install dumb init
   get_url:
