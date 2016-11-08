@@ -12,5 +12,4 @@ RUN apk add --no-cache --update \
 RUN pip install ansible
 
 # Install Ansible inventory file
-RUN mkdir -p /etc/ansible/ && echo $'[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts \
-    && mkdir -p /usr/share/nginx/html && echo $'<h1>Hello Wold!</h1>' > /usr/share/nginx/html/index.html
+RUN mkdir -p /etc/ansible/ && echo $'[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts

@@ -1,13 +1,16 @@
 ---
+
+- debug: var=ansible_env
+
 # For preventing pid 1 issues it is advisble to use dumb-init in docker
 - name: Install dumb init
   get_url:
     dest: /usr/local/bin/dumb-init
     url: "https://github.com/Yelp/dumb-init/releases/download/v{{ nginx_dumb_init.version }}/dumb-init_{{ nginx_dumb_init.version }}_amd64"
-    mode: 775
+    mode: 0775
     validate_certs: no
     checksum: "{{ nginx_dumb_init.checksum }}"
-  when: ansible_connection != 'docker'
+  when: ansible_connection == 'docker' or ansible_env.ANSIBLE_CONTAINER is defined
 
 - name: Ensure nginx is installed.
   command: apk --no-cache add {{ nginx_package_name }}

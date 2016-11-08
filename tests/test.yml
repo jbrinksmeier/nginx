@@ -2,7 +2,7 @@
 - hosts: all
   vars:
     nginx_pidfile: /tmp/nginx/nginx.pid
-    nginx_spool_dir: /tmp/spool/
+    nginx_spool_dir: /tmp/spool
     nginx_error_log: "/tmp/log/nginx/error.log warn"
     nginx_access_log: "/tmp/log/nginx/access.log main buffer=16k"
     nginx_vhosts:
@@ -19,3 +19,5 @@
 
   roles:
     - role_under_test
+  environment:
+    ANSIBLE_CONTAINER: yes
