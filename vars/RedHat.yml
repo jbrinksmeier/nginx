@@ -1,0 +1,13 @@
+---
+__nginx_user: "nginx"
+root_group: root
+nginx_pidfile:            /var/run/nginx/nginx.pid
+nginx_conf_path:          /etc/nginx/conf.d
+nginx_conf_file_path:     /etc/nginx/nginx.conf
+nginx_mime_file_path:     /etc/nginx/mime.types
+nginx_vhost_path:         /etc/nginx/sites-enabled
+nginx_default_vhost_path: /etc/nginx/sites-enabled/default
+
+nginx_dumb_init:
+  version: 1.2.0
+  checksum: sha256:81231da1cd074fdc81af62789fead8641ef3f24b6b07366a1c34e5b059faf363

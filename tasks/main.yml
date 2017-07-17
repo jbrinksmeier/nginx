@@ -10,9 +10,34 @@
     nginx_user: "{{ __nginx_user }}"
   when: nginx_user is not defined
 
-# Setup/install tasks.
-- include: setup-Alpine.yml
+# For preventing pid 1 issues it is advisble to use dumb-init in docker
+- name: Install dumb init
+  get_url:
+    dest: /usr/local/bin/dumb-init
+    url: "https://github.com/Yelp/dumb-init/releases/download/v{{ nginx_dumb_init.version }}/dumb-init_{{ nginx_dumb_init.version }}_amd64"
+    mode: 0775
+    validate_certs: no
+    checksum: "{{ nginx_dumb_init.checksum }}"
+  when: ansible_connection == 'docker' or ansible_env.ANSIBLE_CONTAINER is defined
+
+# install tasks.
+- include: install-Alpine.yml
   when: ansible_os_family == 'Alpine'
+
+- include: install-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Create nginx spool dir
+  file:
+    path: "{{item}}"
+    state: directory
+    owner: "{{nginx_user}}"
+    group: "{{root_group}}"
+  with_items:
+    - "{{nginx_spool_dir}}"
+    - "{{nginx_pidfile|dirname}}"
+    - "{{nginx_error_log|dirname}}"
+    - "{{nginx_access_log|dirname}}"
 
 # Vhost configuration.
 - include: vhosts.yml
