@@ -7,7 +7,7 @@
   yum_repository:
     name: openresty
     description: OpenResty Repo (nginx with lua)
-    baseurl: https://openresty.org/package/centos/openresty.repo
+    baseurl: https://openresty.org/package/centos/7/x86_64/
 
 - name: Install openresty
   yum:
@@ -19,3 +19,16 @@
     src: /usr/local/openresty/nginx/sbin/nginx
     dest: /usr/sbin/nginx
     state: link
+
+- name: create nginx group
+  group: name=nginx system=true
+
+- name: create nginx user
+  user: name=nginx system=true group=nginx
+
+- name: create default config in /etc/nginx
+  file:
+    src: /usr/local/openresty/nginx/conf
+    dest: /etc/nginx
+    state: link
+
