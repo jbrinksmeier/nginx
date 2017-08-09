@@ -1,5 +1,21 @@
 ---
-- name: Install nginx
+- name: Install yum-utils
   yum:
-    name: nginx
+    name: yum-utils
+    state: present
+- name: install openresty repo
+  yum_repository:
+    name: openresty
+    description: OpenResty Repo (nginx with lua)
+    baseurl: https://openresty.org/package/centos/openresty.repo
+
+- name: Install openresty
+  yum:
+    name: openresty
     state: latest
+
+- name: Install nginx binary
+  file:
+    src: /usr/local/openresty/nginx/sbin/nginx
+    dest: /usr/sbin/nginx
+    state: link
